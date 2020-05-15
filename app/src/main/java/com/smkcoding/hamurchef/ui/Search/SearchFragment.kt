@@ -1,4 +1,4 @@
-package com.smkcoding.hamurchef.ui.dashboard
+package com.smkcoding.hamurchef.ui.Search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.smkcoding.hamurchef.R
 
-class DashboardFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var dashboardViewModel: SearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_dashboard,container, false)
+        return inflater.inflate(R.layout.fragment_search,container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
