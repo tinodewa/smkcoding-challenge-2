@@ -8,19 +8,19 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smkcoding.hamurchef.R
-import com.smkcoding.hamurchef.data.RecipeData
-import com.smkcoding.hamurchef.data.RecipeService
-import com.smkcoding.hamurchef.data.apiRequest
-import com.smkcoding.hamurchef.data.httpClient
+import com.smkcoding.hamurchef.data.*
 import com.smkcoding.hamurchef.utils.dismissLoading
 import com.smkcoding.hamurchef.utils.showLoading
 import com.smkcoding.hamurchef.utils.tampilToast
 import kotlinx.android.synthetic.main.fragment_recipe.*
+import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RecipeFragment : Fragment() {
+class   RecipeFragment : Fragment() {
+
+    lateinit var parsedData :ArrayList<Recipe>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,17 +46,15 @@ class RecipeFragment : Fragment() {
         val apiRequest = apiRequest<RecipeService>(httpClient)
 
         val call = apiRequest.getRecipes()
+        call.enqueue(object : Callback<List<RecipeResponse>> {
 
-
-        call.enqueue(object : Callback<List<RecipeData>> {
-
-            override fun onFailure(call: Call<List<RecipeData>>, t: Throwable) {
+            override fun onFailure(call: Call<List<RecipeResponse>>, t: Throwable) {
                 dismissLoading(home_srl)
             }
 
             override fun onResponse(
-                call: Call<List<RecipeData>>,
-                response: Response<List<RecipeData>>
+                call: Call<List<RecipeResponse>>,
+                response: Response<List<RecipeResponse>>
             ) {
                 dismissLoading(home_srl)
 
@@ -66,9 +64,6 @@ class RecipeFragment : Fragment() {
                             response.body()?.size != 0
                             ->
                                 showRecipe(response.body()!!)
-
-
-
                             else -> {
                                 tampilToast(context!!, "Berhasil")
                             }
@@ -82,33 +77,15 @@ class RecipeFragment : Fragment() {
         })
     }
 
-    private fun showRecipe(recipes: List<RecipeData>) {
+//    private fun parseRecipe(recipeJson: List<RecipeResponse>) {
+//        val parsedData = JSONArray(recipeJson)
+//        val results = parsedData.getJSONObject(3)
+//        showRecipe()
+//    }
+
+
+    private fun showRecipe(recipes: List<RecipeResponse>) {
         rv_listRecipeBook.layoutManager = LinearLayoutManager(context)
         rv_listRecipeBook.adapter = RecipeAdapter(context!!, recipes)
     }
-
-//    private fun dataRecipeBook() {
-//        recipeBook = ArrayList()
-//        recipeBook.add(RecipeBook("Gado-gado","https://kprofiles.com/wp-content/uploads/2019/11/D6aGkQlUcAAgf_n-533x800.jpg"))
-//        recipeBook.add(RecipeBook("Rujak","https://kprofiles.com/wp-content/uploads/2019/11/D6aGkQlUcAAgf_n-533x800.jpg"))
-//    }
-//
-//    private fun showRecipeBook() {
-//        rv_listRecipeBook.layoutManager = LinearLayoutManager(activity)
-//        rv_listRecipeBook.adapter =
-//            RecipeAdapter(activity!!, recipeBook) {
-//                val recipe = it
-//                tampilToast(activity!!, recipe.RecipeName)
-//            }
-//    }
-//
-//    private fun initView() {
-//        dataRecipeBook()
-//        showRecipeBook()
-//    }
-//
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        this.clearFindViewByIdCache()
-//    }
 }

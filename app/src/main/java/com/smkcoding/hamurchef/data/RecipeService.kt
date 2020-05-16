@@ -6,6 +6,6 @@ import retrofit2.http.GET
 interface RecipeService {
 
     @GET("?q=omelet")
-    fun getRecipes(): Call<List<RecipeData>>
+    fun getRecipes():Call<List<RecipeResponse>>
 
 }
