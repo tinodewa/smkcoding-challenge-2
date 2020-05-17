@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
 import com.smkcoding.hamurchef.R
-import com.smkcoding.hamurchef.data.Recipe
+import com.smkcoding.hamurchef.data.Meal
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.home_recipe_book_item.*
 
 class RecipeAdapter(
-    private val context: Context, private val items: List<Recipe>,
-    private val listener: (Recipe) -> Unit
+    private val context: Context, private val items: List<Meal>,
+    private val listener: (Meal) -> Unit
 ) :
     RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
 
@@ -40,11 +40,11 @@ class RecipeAdapter(
 
     class ViewHolder(val context: Context, override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(item: Recipe, listener: (Recipe) -> Unit) {
+        fun bindItem(item: Meal, listener: (Meal) -> Unit) {
 
-            txtRecipeName.text = item.title
+            txtRecipeName.text = item.strMeal
 
-            Glide.with(context).load(item.thumbnail).into(recipeImage)
+            Glide.with(context).load(item.strMealThumb).into(recipeImage)
             containerView.setOnClickListener { listener(item) }
 
         }

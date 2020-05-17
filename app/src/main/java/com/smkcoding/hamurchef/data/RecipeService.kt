@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface RecipeService {
 
-    @GET("?q=omelet")
+    @GET("filter.php?i=egg")
     fun getRecipes():Call<RecipeResponse>
 
 }

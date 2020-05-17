@@ -39,7 +39,7 @@ class   RecipeFragment : Fragment() {
     }
 
     private fun callApiGetRecipe() {
-        showLoading(context!!, home_srl)
+        showLoading(context!!, recipe_srl)
 
         val httpClient = httpClient()
         val apiRequest = apiRequest<RecipeService>(httpClient)
@@ -48,21 +48,21 @@ class   RecipeFragment : Fragment() {
         call.enqueue(object : Callback<RecipeResponse> {
 
             override fun onFailure(call: Call<RecipeResponse>, t: Throwable) {
-                dismissLoading(home_srl)
+                dismissLoading(recipe_srl)
             }
 
             override fun onResponse(
                 call: Call<RecipeResponse>,
                 response: Response<RecipeResponse>
             ) {
-                dismissLoading(home_srl)
+                dismissLoading(recipe_srl)
 
                 when {
                     response.isSuccessful ->
                         when {
-                            response.body()?.results?.size != 0
+                            response.body()?.meals?.size != 0
                             ->
-                                response.body()!!.results?.let { showRecipe(it) }
+                                response.body()!!.meals?.let { showRecipe(it) }
                             else -> {
                                 tampilToast(context!!, "Berhasil")
                             }
@@ -76,11 +76,11 @@ class   RecipeFragment : Fragment() {
         })
     }
 
-    private fun showRecipe(result: List<Recipe>) {
+    private fun showRecipe(result: List<Meal>) {
         rv_listRecipeBook.layoutManager = LinearLayoutManager(context)
         rv_listRecipeBook.adapter = RecipeAdapter(context!!, result){
             val recipeFood = it
-            tampilToast(context!!, recipeFood.title)
+            tampilToast(context!!, recipeFood.strMeal)
         }
     }
 

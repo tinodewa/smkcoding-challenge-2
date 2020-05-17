@@ -1,25 +1,18 @@
 package com.smkcoding.hamurchef.data
 
+
 import com.google.gson.annotations.SerializedName
 
-data class RecipeResponse (
-    @SerializedName("title")
-    val title: String,
-    @SerializedName("version")
-    val version: Double,
-    @SerializedName("href")
-    val href: String,
-    @SerializedName("results")
-    val results: List<Recipe>?
+data class RecipeResponse(
+    @SerializedName("meals")
+    val meals: List<Meal>
 )
 
-data class Recipe(
-    @SerializedName("title")
-    val title: String,
-    @SerializedName("href")
-    val href: String,
-    @SerializedName("ingredients")
-    val ingredients: String,
-    @SerializedName("thumbnail")
-    val thumbnail: String
+data class Meal(
+    @SerializedName("idMeal")
+    val idMeal: String,
+    @SerializedName("strMeal")
+    val strMeal: String,
+    @SerializedName("strMealThumb")
+    val strMealThumb: String
 )

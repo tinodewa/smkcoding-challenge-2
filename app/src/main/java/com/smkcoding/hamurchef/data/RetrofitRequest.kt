@@ -24,7 +24,7 @@ inline fun <reified T> apiRequest(okHttpClient: OkHttpClient): T {
     val gson = GsonBuilder().create()
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://www.recipepuppy.com/api/")
+        .baseUrl("https://www.themealdb.com/api/json/v1/1/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
