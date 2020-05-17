@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.smkcoding.hamurchef.ui.Search.SearchFragment
 import com.smkcoding.hamurchef.ui.recipe.RecipeFragment
-import com.smkcoding.hamurchef.ui.profile.ProfileFragment
+import com.smkcoding.hamurchef.ui.ingredient.IngredientFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
@@ -21,7 +21,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
                 return SearchFragment()
             }
             2 -> {
-                return ProfileFragment()
+                return IngredientFragment()
             }
             else -> {
                 return SearchFragment()

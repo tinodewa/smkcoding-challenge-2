@@ -14,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
     private val menuIcon = arrayOf(
         R.drawable.ic_recipe_book_black,
         R.drawable.ic_search_food_black,
-        R.drawable.ic_profile_man_black
+        R.drawable.ic_ingredients
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
