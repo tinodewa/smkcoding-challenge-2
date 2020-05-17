@@ -1,23 +1,21 @@
-package com.smkcoding.hamurchef.ui.recipe
+package com.smkcoding.hamurchef.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.GlideException
 import com.smkcoding.hamurchef.R
 import com.smkcoding.hamurchef.data.Meal
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.home_recipe_book_item.*
 
-class RecipeAdapter(
+class RecipeRecycleViewAdapter(
     private val context: Context, private val items: List<Meal>,
     private val listener: (Meal) -> Unit
 ) :
-    RecyclerView.Adapter<RecipeAdapter.ViewHolder>() {
+    RecyclerView.Adapter<RecipeRecycleViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

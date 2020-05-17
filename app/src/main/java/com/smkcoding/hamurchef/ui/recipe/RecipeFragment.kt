@@ -8,13 +8,13 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smkcoding.hamurchef.R
+import com.smkcoding.hamurchef.adapter.RecipeRecycleViewAdapter
 import com.smkcoding.hamurchef.data.*
 import com.smkcoding.hamurchef.utils.dismissLoading
 import com.smkcoding.hamurchef.utils.showLoading
 import com.smkcoding.hamurchef.utils.tampilToast
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_recipe.*
-import org.json.JSONArray
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -78,10 +78,11 @@ class   RecipeFragment : Fragment() {
 
     private fun showRecipe(result: List<Meal>) {
         rv_listRecipeBook.layoutManager = LinearLayoutManager(context)
-        rv_listRecipeBook.adapter = RecipeAdapter(context!!, result){
-            val recipeFood = it
-            tampilToast(context!!, recipeFood.strMeal)
-        }
+        rv_listRecipeBook.adapter =
+            RecipeRecycleViewAdapter(context!!, result) {
+                val recipeFood = it
+                tampilToast(context!!, recipeFood.strMeal)
+            }
     }
 
     override fun onDestroy() {
