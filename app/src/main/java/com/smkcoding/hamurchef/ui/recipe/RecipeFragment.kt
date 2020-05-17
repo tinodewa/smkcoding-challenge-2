@@ -1,5 +1,6 @@
 package com.smkcoding.hamurchef.ui.recipe
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smkcoding.hamurchef.R
+import com.smkcoding.hamurchef.RecipeDetails
 import com.smkcoding.hamurchef.adapter.RecipeRecycleViewAdapter
 import com.smkcoding.hamurchef.data.*
 import com.smkcoding.hamurchef.utils.dismissLoading
@@ -19,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class   RecipeFragment : Fragment() {
+class RecipeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,13 +78,20 @@ class   RecipeFragment : Fragment() {
         })
     }
 
-    private fun showRecipe(result: List<Meal>) {
+    private fun showRecipe(result: List<Detail>) {
         rv_listRecipeBook.layoutManager = LinearLayoutManager(context)
-        rv_listRecipeBook.adapter =
-            RecipeRecycleViewAdapter(context!!, result) {
-                val recipeFood = it
-                tampilToast(context!!, recipeFood.strMeal)
-            }
+        rv_listRecipeBook.adapter = RecipeRecycleViewAdapter(context!!, result) {
+            val recipeFood = it
+            tampilToast(context!!, recipeFood.strMeal)
+            val intent = Intent(context!!, RecipeDetails::class.java)
+            val bundle = Bundle()
+            bundle.putString("mealName", recipeFood.strMeal)
+            bundle.putString("mealTags", recipeFood.strTags)
+            bundle.putString("mealThumb", recipeFood.strMealThumb)
+            intent.putExtras(bundle)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {

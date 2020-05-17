@@ -1,6 +1,7 @@
 package com.smkcoding.hamurchef.ui.ingredient
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,9 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.smkcoding.hamurchef.IngredientDetail
 import com.smkcoding.hamurchef.R
+import com.smkcoding.hamurchef.RecipeDetails
 import com.smkcoding.hamurchef.adapter.IngredientRecycleViewAdapter
 import com.smkcoding.hamurchef.adapter.RecipeRecycleViewAdapter
 import com.smkcoding.hamurchef.data.*
@@ -30,7 +33,7 @@ class IngredientFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_ingredient,container, false)
+        return inflater.inflate(R.layout.fragment_ingredient, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,8 +81,16 @@ class IngredientFragment : Fragment() {
 
     private fun showRecipe(result: List<Ingredient>) {
         rv_listIngredient.layoutManager = LinearLayoutManager(context)
-        rv_listIngredient.adapter =
-            IngredientRecycleViewAdapter(context!!, result)
+        rv_listIngredient.adapter = IngredientRecycleViewAdapter(context!!, result) {
+            val mainIngredient = it
+            tampilToast(context!!, mainIngredient.strIngredient)
+            val intent = Intent(context!!, IngredientDetail::class.java)
+            val bundle = Bundle()
+            bundle.putString("ingName", mainIngredient.strIngredient)
+            bundle.putString("ingDesc", mainIngredient.strDescription)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {

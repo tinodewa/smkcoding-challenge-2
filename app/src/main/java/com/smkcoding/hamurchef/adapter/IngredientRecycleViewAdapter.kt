@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smkcoding.hamurchef.R
+import com.smkcoding.hamurchef.data.Detail
 import com.smkcoding.hamurchef.data.Ingredient
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.ingredient_item.*
 
 class IngredientRecycleViewAdapter(
-    private val context: Context, private val items: List<Ingredient>
+    private val context: Context, private val items: List<Ingredient>,
+    private val listener: (Ingredient) -> Unit
 ) :
     RecyclerView.Adapter<IngredientRecycleViewAdapter.ViewHolder>() {
 
@@ -31,14 +33,16 @@ class IngredientRecycleViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(items.get(position))
+        holder.bindItem(items.get(position), listener)
     }
 
     class ViewHolder(val context: Context, override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(item: Ingredient) {
+        fun bindItem(item: Ingredient, listener: (Ingredient) -> Unit) {
 
             txtIngredient.text = item.strIngredient
+
+            containerView.setOnClickListener { listener(item) }
 
         }
     }

@@ -120,12 +120,12 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun showRecipe(result: List<Meal>) {
+    private fun showRecipe(result: List<Detail>) {
         rv_searchRecipeBook.layoutManager = LinearLayoutManager(context)
         rv_searchRecipeBook.adapter =
             RecipeRecycleViewAdapter(context!!, result) {
-                val recipeFood = it
-                tampilToast(context!!, recipeFood.strMeal)
+                val meal = it
+                tampilToast(context!!, meal.strMeal)
             }
     }
 
