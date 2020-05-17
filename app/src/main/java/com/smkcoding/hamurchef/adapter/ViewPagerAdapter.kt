@@ -3,9 +3,9 @@ package com.smkcoding.hamurchef.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.smkcoding.hamurchef.ui.dashboard.DashboardFragment
-import com.smkcoding.hamurchef.ui.home.HomeFragment
-import com.smkcoding.hamurchef.ui.notifications.NotificationsFragment
+import com.smkcoding.hamurchef.ui.Search.SearchFragment
+import com.smkcoding.hamurchef.ui.recipe.RecipeFragment
+import com.smkcoding.hamurchef.ui.ingredient.IngredientFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
@@ -15,16 +15,16 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     override fun createFragment(position: Int): Fragment {
         when (position) {
             0 -> {
-                return HomeFragment()
+                return RecipeFragment()
             }
             1 -> {
-                return DashboardFragment()
+                return SearchFragment()
             }
             2 -> {
-                return NotificationsFragment()
+                return IngredientFragment()
             }
             else -> {
-                return DashboardFragment()
+                return SearchFragment()
             }
         }
     }
