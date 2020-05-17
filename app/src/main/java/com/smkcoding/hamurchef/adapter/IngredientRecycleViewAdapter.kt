@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.smkcoding.hamurchef.R
 import com.smkcoding.hamurchef.data.Ingredient
-import com.smkcoding.hamurchef.data.Meal
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.home_recipe_book_item.*
 import kotlinx.android.synthetic.main.ingredient_item.*
 
 class IngredientRecycleViewAdapter(
@@ -24,7 +21,7 @@ class IngredientRecycleViewAdapter(
     ) = ViewHolder(
         context,
         LayoutInflater.from(context).inflate(
-            R.layout.home_recipe_book_item,
+            R.layout.ingredient_item,
             parent, false
         )
     )

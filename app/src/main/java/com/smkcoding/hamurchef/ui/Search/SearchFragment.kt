@@ -1,25 +1,22 @@
 package com.smkcoding.hamurchef.ui.Search
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.SearchView
-import android.widget.SearchView.OnQueryTextListener
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.Nullable
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smkcoding.hamurchef.R
 import com.smkcoding.hamurchef.adapter.RecipeRecycleViewAdapter
 import com.smkcoding.hamurchef.data.*
 import com.smkcoding.hamurchef.utils.dismissLoading
+import com.smkcoding.hamurchef.utils.hideKeyboard
 import com.smkcoding.hamurchef.utils.showLoading
 import com.smkcoding.hamurchef.utils.tampilToast
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.fragment_search.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,9 +37,10 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         callApiGetRecipe()
 
-        search_btn.setOnClickListener {
+        search_btn.setOnClickListener {v ->
             searchText = search_txt.text.toString()
             callSearchedRecipe(searchText)
+            hideKeyboard()
         }
     }
 
@@ -76,7 +74,6 @@ class SearchFragment : Fragment() {
                                 tampilToast(context!!, "Berhasil")
                             }
                         }
-
                     else -> {
                         tampilToast(context!!, "Gagal")
                     }
