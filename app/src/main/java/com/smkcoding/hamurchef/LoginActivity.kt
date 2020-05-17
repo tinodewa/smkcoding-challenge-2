@@ -17,11 +17,11 @@ class LoginActivity : AppCompatActivity() {
 
         val sharedPreferences: Preferences = Preferences(this)
         login_btn.setOnClickListener {
-            Preferences.setLog
+//            Preferences.setLog
             val username = login_name.editableText.toString()
             val password = login_password.editableText.toString()
-            sharedPreferences.saveName(, username)
-            sharedPreferences.savePass("userpass", password)
+//            sharedPreferences.saveName(, username)
+//            sharedPreferences.savePass("userpass", password)
             tampilToast(this, "Data Tersimpan")
         }
     }

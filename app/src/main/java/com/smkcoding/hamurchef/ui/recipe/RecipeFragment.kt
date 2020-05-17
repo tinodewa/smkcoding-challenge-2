@@ -12,6 +12,7 @@ import com.smkcoding.hamurchef.data.*
 import com.smkcoding.hamurchef.utils.dismissLoading
 import com.smkcoding.hamurchef.utils.showLoading
 import com.smkcoding.hamurchef.utils.tampilToast
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_recipe.*
 import org.json.JSONArray
 import retrofit2.Call
@@ -19,8 +20,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class   RecipeFragment : Fragment() {
-
-    lateinit var parsedData :ArrayList<Recipe>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,24 +45,24 @@ class   RecipeFragment : Fragment() {
         val apiRequest = apiRequest<RecipeService>(httpClient)
 
         val call = apiRequest.getRecipes()
-        call.enqueue(object : Callback<List<RecipeResponse>> {
+        call.enqueue(object : Callback<RecipeResponse> {
 
-            override fun onFailure(call: Call<List<RecipeResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<RecipeResponse>, t: Throwable) {
                 dismissLoading(home_srl)
             }
 
             override fun onResponse(
-                call: Call<List<RecipeResponse>>,
-                response: Response<List<RecipeResponse>>
+                call: Call<RecipeResponse>,
+                response: Response<RecipeResponse>
             ) {
                 dismissLoading(home_srl)
 
                 when {
                     response.isSuccessful ->
                         when {
-                            response.body()?.size != 0
+                            response.body()?.results?.size != 0
                             ->
-                                showRecipe(response.body()!!)
+                                response.body()!!.results?.let { showRecipe(it) }
                             else -> {
                                 tampilToast(context!!, "Berhasil")
                             }
@@ -77,15 +76,16 @@ class   RecipeFragment : Fragment() {
         })
     }
 
-//    private fun parseRecipe(recipeJson: List<RecipeResponse>) {
-//        val parsedData = JSONArray(recipeJson)
-//        val results = parsedData.getJSONObject(3)
-//        showRecipe()
-//    }
-
-
-    private fun showRecipe(recipes: List<RecipeResponse>) {
+    private fun showRecipe(result: List<Recipe>) {
         rv_listRecipeBook.layoutManager = LinearLayoutManager(context)
-        rv_listRecipeBook.adapter = RecipeAdapter(context!!, recipes)
+        rv_listRecipeBook.adapter = RecipeAdapter(context!!, result){
+            val recipeFood = it
+            tampilToast(context!!, recipeFood.title)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        this.clearFindViewByIdCache()
     }
 }
