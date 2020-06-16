@@ -16,6 +16,6 @@ interface RecipeService {
     @GET("list.php?i=list")
     fun getMainIngredients():Call<IngredientResponse>
 
-//    @GET("lookup.php")
-//    fun getDetails(@Query("i") foodName: String?):Call<DetailResponse>
+    @GET("lookup.php")
+    fun getDetails(@Query("i") foodName: String?):Call<RecipeResponse>
 }
