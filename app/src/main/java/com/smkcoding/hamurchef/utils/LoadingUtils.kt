@@ -8,7 +8,7 @@ import com.smkcoding.hamurchef.R
 fun showLoading(context: Context, swipeRefreshLayout: SwipeRefreshLayout) {
     swipeRefreshLayout.setColorSchemeColors(
         ContextCompat.getColor(context,
-        R.color.colorPrimary))
+        R.color.colorYellowLight))
 
     swipeRefreshLayout.isEnabled = true
     swipeRefreshLayout.isRefreshing = true

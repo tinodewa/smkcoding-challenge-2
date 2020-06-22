@@ -5,4 +5,15 @@
     <string name="title_search">Search</string>
     <string name="title_profile">Profile</string>
     <string name="search">Search</string>
+    <string name="search_desc">Search your desire\nrecipe food with\nmany category</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_forget_your_password">Forget your password?</string>
+    <string name="login_sign_in">Sign In</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="or">- or -</string>
+    <string name="get_started">Get Started</string>
+
+
 </resources>
