@@ -11,9 +11,12 @@
     <string name="login_forget_your_password">Forget your password?</string>
     <string name="login_sign_in">Sign In</string>
     <string name="dont_have_an_account">Don\'t have an account?</string>
-    <string name="sign_up">SIGN UP</string>
+    <string name="sign_up">Sign Up</string>
     <string name="or">- or -</string>
     <string name="get_started">Get Started</string>
+    <string name="name">Name</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="send">Send</string>
 
 
 </resources>
