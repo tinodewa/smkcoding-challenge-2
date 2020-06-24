@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "605320080269",
+    "firebase_url": "https://hamur-chef.firebaseio.com",
+    "project_id": "hamur-chef",
+    "storage_bucket": "hamur-chef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605320080269:android:a1e33d8c6af69163f4abc4",
+        "android_client_info": {
+          "package_name": "com.smkcoding.hamurchef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605320080269-qkoal1pjndgtvfr9glgcgt37agrj8lgq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smkcoding.hamurchef",
+            "certificate_hash": "89496efd253c9acc11b99f7015af42942dccc989"
+          }
+        },
+        {
+          "client_id": "605320080269-rr0h5tkmnqo1kpcdmd120ivd9e9lf1en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXlgxb4LuQHI0IWYhtWSiQYyXbs5f57bU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605320080269-rr0h5tkmnqo1kpcdmd120ivd9e9lf1en.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

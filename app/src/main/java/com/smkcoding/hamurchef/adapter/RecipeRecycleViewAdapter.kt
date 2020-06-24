@@ -41,6 +41,7 @@ class RecipeRecycleViewAdapter(
         fun bindItem(item: Detail, listener: (Detail) -> Unit) {
 
             txtRecipeName.text = item.strMeal
+            txtRecipeCountry.text = item.strArea
 
             Glide.with(context).load(item.strMealThumb).into(recipeImage)
             containerView.setOnClickListener { listener(item) }

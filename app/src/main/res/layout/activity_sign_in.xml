@@ -14,12 +14,12 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"
-        tools:ignore="MissingConstrains"/>
+        tools:ignore="MissingConstrains" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <EditText
-            android:id="@+id/input_email"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_email" />
@@ -81,14 +81,14 @@
         app:layout_constraintTop_toBottomOf="@+id/input_email_layout">
 
         <EditText
-            android:id="@+id/input_password"
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_password" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/forget_password_text"
+        android:id="@+id/forget_password_cta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -118,7 +118,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forget_password_text" />
+        app:layout_constraintTop_toBottomOf="@+id/forget_password_cta" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -138,7 +138,7 @@
             android:text="@string/dont_have_an_account" />
 
         <TextView
-            android:id="@+id/sign_up_text"
+            android:id="@+id/sign_up_cta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
@@ -157,29 +157,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/google_sign_in"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal"
+        android:src="@drawable/ic_google_plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <ImageView
-            android:id="@+id/facebook_sign_in"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/ic_facebook" />
-
-        <ImageView
-            android:id="@+id/google_sign_in"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_google_plus" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
