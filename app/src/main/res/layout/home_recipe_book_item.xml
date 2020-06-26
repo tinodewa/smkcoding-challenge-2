@@ -28,7 +28,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:text="RecipeName"
+            android:text="@string/example_recipename"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/recipeImage"
@@ -42,21 +42,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:layout_weight="1"
-            android:text="TextView"
+            android:text="@string/example_country"
             android:textColor="@color/colorGrey"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/recipeImage"
             app:layout_constraintTop_toBottomOf="@+id/txtRecipeName" />
-
-        <ImageView
-            android:id="@+id/home_fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_iconmonstr_favorite_outline"
-            android:tint="@color/colorYellowLight"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

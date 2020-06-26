@@ -17,6 +17,9 @@
     <string name="name">Name</string>
     <string name="forget_password">Forget Password</string>
     <string name="send">Send</string>
+    <string name="example_recipename">RecipeName</string>
+    <string name="example_country">Country</string>
+    <string name="blank_text"></string>
 
 
 </resources>

@@ -3,6 +3,8 @@ package com.smkcoding.hamurchef
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
@@ -30,5 +32,8 @@ class HomeActivity : AppCompatActivity() {
                     menuIcon[position], null
                 )
             }).attach()
+
+        home_vp.canScrollHorizontally(10)
+
     }
 }
