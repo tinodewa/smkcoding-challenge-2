@@ -2,12 +2,23 @@ package com.smkcoding.hamurchef.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 
-@Entity(tableName = "my_favorite")
+@IgnoreExtraProperties
 data class MyFavoriteModel(
-    var recipe_name: String,
-    var status: String,
-    @PrimaryKey var key: String
+    var recipe_name: String? = "",
+    var status: String? = ""
 ) {
-    constructor() : this("", "", "")
+    //    constructor() : this("", "", "")
+    // [START fav_to_map]
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "recipe_name" to recipe_name,
+            "status" to status
+        )
+    }
+    // [END fav_to_map]
 }
+// [END fav_class]
