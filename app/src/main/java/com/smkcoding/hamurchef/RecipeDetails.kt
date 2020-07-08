@@ -40,37 +40,6 @@ class RecipeDetails : AppCompatActivity() {
             addRecipeToFavorite()
         }
 
-        cek_status.setOnClickListener {
-            updatedata()
-        }
-
-    }
-
-    private fun updatedata() {
-
-        val getRecipeName = detail_name.text.toString()
-        val getUserID = auth?.currentUser?.uid.toString()
-        val checked = "checked"
-        val unchecked = "unchecked"
-        val key = dbRef.child(getUserID).child("favoriteRecipe").child(getRecipeName).key
-
-        val remDataFav = MyFavoriteModel(getRecipeName, unchecked)
-        val postRemove = remDataFav.toMap()
-
-        val dataUpdate = hashMapOf<String, Any>(
-            "/$getUserID/favoriteRecipe/$getRecipeName/" to postRemove
-        )
-
-
-        dbRef.updateChildren(dataUpdate)
-            .addOnCompleteListener {
-                Toast.makeText(
-                    this,
-                    "Success add recipe to favorite <3",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
     }
 
     private fun getData() {
