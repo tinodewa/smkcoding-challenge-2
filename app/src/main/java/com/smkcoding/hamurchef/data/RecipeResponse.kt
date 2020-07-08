@@ -1,8 +1,11 @@
 package com.smkcoding.hamurchef.data
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "my_recipe")
 data class RecipeResponse(
     @SerializedName("meals")
     val meals: List<Detail>
@@ -12,7 +15,7 @@ data class Detail(
     @SerializedName("dateModified")
     val dateModified: Any,
     @SerializedName("idMeal")
-    val idMeal: String,
+    @PrimaryKey val idMeal: String,
     @SerializedName("strArea")
     val strArea: String,
     @SerializedName("strCategory")

@@ -3,9 +3,9 @@ package com.smkcoding.hamurchef.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.smkcoding.hamurchef.ui.Search.SearchFragment
-import com.smkcoding.hamurchef.ui.recipe.RecipeFragment
-import com.smkcoding.hamurchef.ui.ingredient.IngredientFragment
+import com.smkcoding.hamurchef.SearchFragment
+import com.smkcoding.hamurchef.RecipeFragment
+import com.smkcoding.hamurchef.IngredientFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {

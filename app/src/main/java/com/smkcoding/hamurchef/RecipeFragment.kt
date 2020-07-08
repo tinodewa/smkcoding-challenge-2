@@ -1,4 +1,4 @@
-package com.smkcoding.hamurchef.ui.recipe
+package com.smkcoding.hamurchef
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.smkcoding.hamurchef.R
-import com.smkcoding.hamurchef.RecipeDetails
 import com.smkcoding.hamurchef.adapter.RecipeRecycleViewAdapter
 import com.smkcoding.hamurchef.data.*
 import com.smkcoding.hamurchef.utils.dismissLoading
