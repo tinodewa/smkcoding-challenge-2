@@ -34,7 +34,7 @@ class IngredientFragment : Fragment() {
     }
 
     private fun callApiGetIngredient() {
-        showLoading(context!!, ingredient_srl)
+        showLoading(requireContext(), ingredient_srl)
 
         val httpClient = httpClient()
         val apiRequest = apiRequest<RecipeService>(httpClient)
@@ -57,7 +57,7 @@ class IngredientFragment : Fragment() {
                         when {
                             response.body()?.meals?.size != 0
                             ->
-                                response.body()!!.meals?.let { showRecipe(it) }
+                                showRecipe(response.body()!!.meals)
                             else -> {
                                 tampilToast(context!!, "Berhasil")
                             }
@@ -73,10 +73,10 @@ class IngredientFragment : Fragment() {
 
     private fun showRecipe(result: List<Ingredient>) {
         rv_listIngredient.layoutManager = LinearLayoutManager(context)
-        rv_listIngredient.adapter = IngredientRecycleViewAdapter(context!!, result) {
+        rv_listIngredient.adapter = IngredientRecycleViewAdapter(requireContext(), result) {
             val mainIngredient = it
-            tampilToast(context!!, mainIngredient.strIngredient)
-            val intent = Intent(context!!, IngredientDetail::class.java)
+            tampilToast(requireContext(), mainIngredient.strIngredient)
+            val intent = Intent(requireContext(), IngredientDetail::class.java)
             val bundle = Bundle()
             bundle.putString("ingName", mainIngredient.strIngredient)
             bundle.putString("ingDesc", mainIngredient.strDescription)

@@ -1,7 +1,5 @@
 package com.smkcoding.hamurchef.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
 

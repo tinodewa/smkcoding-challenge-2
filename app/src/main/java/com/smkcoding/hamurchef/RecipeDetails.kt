@@ -2,23 +2,14 @@ package com.smkcoding.hamurchef
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.google.android.gms.auth.api.Auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.smkcoding.hamurchef.data.*
 import com.smkcoding.hamurchef.model.MyFavoriteModel
 import com.smkcoding.hamurchef.utils.dismissLoading
 import com.smkcoding.hamurchef.utils.showLoading
-import com.smkcoding.hamurchef.utils.tampilToast
 import kotlinx.android.synthetic.main.activity_recipe_details.*
-import kotlinx.android.synthetic.main.fragment_ingredient.*
-import kotlinx.android.synthetic.main.home_recipe_book_item.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class RecipeDetails : AppCompatActivity() {
 
@@ -60,7 +51,7 @@ class RecipeDetails : AppCompatActivity() {
 
                         val data = snapshot.getValue(MyFavoriteModel::class.java)
                         val status = data?.status
-                        Status(status)
+                        status(status)
 
 //                    for (shot in snapshot.children) {
 //                        val data = shot.getValue(MyFavoriteModel::class.java)
@@ -78,14 +69,14 @@ class RecipeDetails : AppCompatActivity() {
         val getRecipeName = detail_name.text.toString()
         val getUserID = auth?.currentUser?.uid.toString()
         val checked = "checked"
-        val unchecked = "unchecked"
+//        val unchecked = "unchecked"
 
         val dataFav = MyFavoriteModel(getRecipeName, checked)
-        val remDataFav = MyFavoriteModel(getRecipeName, unchecked)
+//        val remDataFav = MyFavoriteModel(getRecipeName, unchecked)
 
-        val key = dbRef.child(getUserID).child("favoriteRecipe").child(getRecipeName).push().key
+//        val key = dbRef.child(getUserID).child("favoriteRecipe").child(getRecipeName).push().key
 
-        recipe_fav.setOnCheckedChangeListener { check, isChecked ->
+        recipe_fav.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 dbRef.child(getUserID).child("favoriteRecipe").child(getRecipeName)
                     .setValue(dataFav)
@@ -125,14 +116,18 @@ class RecipeDetails : AppCompatActivity() {
         Glide.with(this).load(bundle?.getString("mealThumb")).into(detail_Image)
     }
 
-    private fun Status(status: String?) {
-        if (status == "checked") {
-            recipe_fav.isChecked = true
-        } else if (status == "unchecked") {
-            recipe_fav.isChecked = false
-        } else {
-            recipe_fav.isChecked = false
-            Toast.makeText(this@RecipeDetails, "Gagal memproses data!", Toast.LENGTH_SHORT).show()
+    private fun status(status: String?) {
+        when (status) {
+            "checked" -> {
+                recipe_fav.isChecked = true
+            }
+            "unchecked" -> {
+                recipe_fav.isChecked = false
+            }
+            else -> {
+                recipe_fav.isChecked = false
+                Toast.makeText(this@RecipeDetails, "Gagal memproses data!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

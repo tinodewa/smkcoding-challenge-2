@@ -8,7 +8,7 @@ import android.os.Handler
 class SplashScreen : AppCompatActivity() {
 
     private var mVisible: Boolean = false
-    lateinit var handler: Handler
+    private lateinit var handler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         val adapter = ViewPagerAdapter(this)
-        home_vp.setAdapter(adapter);
+        home_vp.adapter = adapter;
         TabLayoutMediator(home_tl, home_vp,
             TabConfigurationStrategy { tab, position ->
                 tab.icon = ResourcesCompat.getDrawable(

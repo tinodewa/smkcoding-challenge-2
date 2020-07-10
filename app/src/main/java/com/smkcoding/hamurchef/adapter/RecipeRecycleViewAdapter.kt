@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.smkcoding.hamurchef.R
-import com.smkcoding.hamurchef.data.Detail
+import com.smkcoding.hamurchef.data.recipe.RecipeData
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.home_recipe_book_item.*
 
 class RecipeRecycleViewAdapter(
-    private val context: Context, private val items: List<Detail>,
-    private val listener: (Detail) -> Unit
+    private val context: Context, private val items: List<RecipeData>,
+    private val listener: (RecipeData) -> Unit
 ) :
     RecyclerView.Adapter<RecipeRecycleViewAdapter.ViewHolder>() {
 
@@ -33,12 +33,12 @@ class RecipeRecycleViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(items.get(position), listener)
+        holder.bindItem(items[position], listener)
     }
 
     class ViewHolder(val context: Context, override val containerView: View) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(item: Detail, listener: (Detail) -> Unit) {
+        fun bindItem(item: RecipeData, listener: (RecipeData) -> Unit) {
 
             txtRecipeName.text = item.strMeal
             txtRecipeCountry.text = item.strArea

@@ -13,18 +13,18 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     private val JUMLAH_MENU = 3
 
     override fun createFragment(position: Int): Fragment {
-        when (position) {
+        return when (position) {
             0 -> {
-                return RecipeFragment()
+                RecipeFragment()
             }
             1 -> {
-                return SearchFragment()
+                SearchFragment()
             }
             2 -> {
-                return IngredientFragment()
+                IngredientFragment()
             }
             else -> {
-                return SearchFragment()
+                SearchFragment()
             }
         }
     }

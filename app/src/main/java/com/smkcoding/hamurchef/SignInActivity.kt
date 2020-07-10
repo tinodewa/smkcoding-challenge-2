@@ -11,7 +11,6 @@ import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_in.google_sign_in
-import kotlinx.android.synthetic.main.activity_sign_in.input_password_layout
 import kotlinx.android.synthetic.main.activity_sign_in.progressBar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
@@ -36,11 +35,11 @@ class SignInActivity : AppCompatActivity() {
 
         btn_sign_in.setOnClickListener {
             progressBar.visibility = View.VISIBLE
-            ProcessSignIn(signup_email.text.toString(), signup_password.text.toString())
+            processSignIn(signup_email.text.toString(), signup_password.text.toString())
         }
 
         google_sign_in.setOnClickListener {
-            ProcessGoogleSignIn()
+            processGoogleSignIn()
         }
 
         sign_up_cta.setOnClickListener {
@@ -48,13 +47,13 @@ class SignInActivity : AppCompatActivity() {
         }
 
         forget_password_cta.setOnClickListener {
-            ForgetPasswordIntent()
+            forgetPasswordIntent()
         }
     }
 
     public override fun onStart() {
         super.onStart()
-        if (auth!!.currentUser == null) {
+        if (auth.currentUser == null) {
         } else {
             //Jika sudah login langsung dilempar ke MainActivity
             intent = Intent(applicationContext, HomeActivity::class.java)
@@ -81,7 +80,7 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun ProcessGoogleSignIn() {
+    private fun processGoogleSignIn() {
         //Statement program for login with google
         startActivityForResult(
             AuthUI.getInstance()
@@ -94,7 +93,7 @@ class SignInActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
     }
 
-    private fun ProcessSignIn(email: String, password: String) {
+    private fun processSignIn(email: String, password: String) {
 
         if (email.contains("@")) {
             auth.signInWithEmailAndPassword(email, password)
@@ -133,7 +132,7 @@ class SignInActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun ForgetPasswordIntent() {
+    private fun forgetPasswordIntent() {
         val intent = Intent(this, ForgetPasswordActivity::class.java)
         startActivity(intent)
     }

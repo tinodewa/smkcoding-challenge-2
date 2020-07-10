@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smkcoding.hamurchef.R
-import com.smkcoding.hamurchef.data.Detail
 import com.smkcoding.hamurchef.data.Ingredient
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.ingredient_item.*
@@ -33,7 +32,7 @@ class IngredientRecycleViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(items.get(position), listener)
+        holder.bindItem(items[position], listener)
     }
 
     class ViewHolder(val context: Context, override val containerView: View) :

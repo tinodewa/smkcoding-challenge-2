@@ -34,7 +34,7 @@ class SignUpActivity : AppCompatActivity() {
             processSignUp(signup_email.text.toString(), signup_password.text.toString())
         }
         google_sign_up.setOnClickListener{
-            ProcessGoogleSignUp()
+            processGoogleSignUp()
         }
     }
 
@@ -56,7 +56,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun ProcessGoogleSignUp() {
+    private fun processGoogleSignUp() {
         //Statement program for login with google
         startActivityForResult(
             AuthUI.getInstance()

@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smkcoding.hamurchef.adapter.RecipeRecycleViewAdapter
 import com.smkcoding.hamurchef.data.*
+import com.smkcoding.hamurchef.data.recipe.RecipeData
+import com.smkcoding.hamurchef.data.recipe.Recipe
 import com.smkcoding.hamurchef.utils.dismissLoading
 import com.smkcoding.hamurchef.utils.hideKeyboard
 import com.smkcoding.hamurchef.utils.showLoading
@@ -33,7 +35,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         callApiGetRecipe()
 
-        search_btn.setOnClickListener {v ->
+        search_btn.setOnClickListener {
             searchText = search_txt.text.toString()
             callSearchedRecipe(searchText)
             hideKeyboard()
@@ -42,21 +44,21 @@ class SearchFragment : Fragment() {
 
     private fun callSearchedRecipe(searchtext: String) {
 
-        showLoading(context!!, search_srl)
+        showLoading(requireContext(), search_srl)
 
         val httpClient = httpClient()
         val apiRequest = apiRequest<RecipeService>(httpClient)
 
         val call = apiRequest.getIngredient(searchtext)
-        call.enqueue(object : Callback<RecipeResponse> {
+        call.enqueue(object : Callback<Recipe> {
 
-            override fun onFailure(call: Call<RecipeResponse>, t: Throwable) {
+            override fun onFailure(call: Call<Recipe>, t: Throwable) {
                 dismissLoading(search_srl)
             }
 
             override fun onResponse(
-                call: Call<RecipeResponse>,
-                response: Response<RecipeResponse>
+                call: Call<Recipe>,
+                response: Response<Recipe>
             ) {
                 dismissLoading(search_srl)
 
@@ -65,7 +67,7 @@ class SearchFragment : Fragment() {
                         when {
                             response.body()?.meals?.size != 0
                             ->
-                                response.body()!!.meals?.let { showRecipe(it) }
+                                showRecipe(response.body()!!.meals)
                             else -> {
                                 tampilToast(context!!, "Berhasil")
                             }
@@ -79,21 +81,21 @@ class SearchFragment : Fragment() {
     }
 
     private fun callApiGetRecipe() {
-        showLoading(context!!, search_srl)
+        showLoading(requireContext(), search_srl)
 
         val httpClient = httpClient()
         val apiRequest = apiRequest<RecipeService>(httpClient)
 
         val call = apiRequest.getRecipes()
-        call.enqueue(object : Callback<RecipeResponse> {
+        call.enqueue(object : Callback<Recipe> {
 
-            override fun onFailure(call: Call<RecipeResponse>, t: Throwable) {
+            override fun onFailure(call: Call<Recipe>, t: Throwable) {
                 dismissLoading(search_srl)
             }
 
             override fun onResponse(
-                call: Call<RecipeResponse>,
-                response: Response<RecipeResponse>
+                call: Call<Recipe>,
+                response: Response<Recipe>
             ) {
                 dismissLoading(search_srl)
 
@@ -102,7 +104,7 @@ class SearchFragment : Fragment() {
                         when {
                             response.body()?.meals?.size != 0
                             ->
-                                response.body()!!.meals?.let { showRecipe(it) }
+                                showRecipe(response.body()!!.meals)
                             else -> {
                                 tampilToast(context!!, "Berhasil")
                             }
@@ -116,12 +118,12 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun showRecipe(result: List<Detail>) {
+    private fun showRecipe(result: List<RecipeData>) {
         rv_searchRecipeBook.layoutManager = LinearLayoutManager(context)
         rv_searchRecipeBook.adapter =
-            RecipeRecycleViewAdapter(context!!, result) {
+            RecipeRecycleViewAdapter(requireContext(), result) {
                 val meal = it
-                tampilToast(context!!, meal.strMeal)
+                tampilToast(requireContext(), meal.strMeal)
             }
     }
 
