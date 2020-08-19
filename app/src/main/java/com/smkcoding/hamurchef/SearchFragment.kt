@@ -1,5 +1,6 @@
 package com.smkcoding.hamurchef
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.annotation.Nullable
@@ -123,7 +124,16 @@ class SearchFragment : Fragment() {
         rv_searchRecipeBook.adapter =
             RecipeRecycleViewAdapter(requireContext(), result) {
                 val meal = it
+//                tampilToast(requireContext(), meal.strMeal)
                 tampilToast(requireContext(), meal.strMeal)
+                val intent = Intent(requireContext(), RecipeDetails::class.java)
+                val bundle = Bundle()
+                bundle.putString("mealName", meal.strMeal)
+                bundle.putString("mealTags", meal.strTags)
+                bundle.putString("mealThumb", meal.strMealThumb)
+                intent.putExtras(bundle)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
             }
     }
 

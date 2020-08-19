@@ -2,6 +2,7 @@ package com.smkcoding.hamurchef
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.CompoundButton
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +25,6 @@ class RecipeDetails : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         getDetailRecipe()
-
         getData()
 
         recipe_fav.setOnClickListener {
@@ -43,15 +43,19 @@ class RecipeDetails : AppCompatActivity() {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                     dismissLoading(detail_srl)
-                    Toast.makeText(this@RecipeDetails, "gagal Gan...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@RecipeDetails,
+                        "gagal mendapatkan data :(",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     dismissLoading(detail_srl)
 
-                        val data = snapshot.getValue(MyFavoriteModel::class.java)
-                        val status = data?.status
-                        status(status)
+                    val data = snapshot.getValue(MyFavoriteModel::class.java)
+                    val status = data?.status
+                    status(status)
 
 //                    for (shot in snapshot.children) {
 //                        val data = shot.getValue(MyFavoriteModel::class.java)
@@ -59,7 +63,11 @@ class RecipeDetails : AppCompatActivity() {
 //                        Status(status)
 //                    }
 
-                    Toast.makeText(this@RecipeDetails, "Berhasil Gan...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@RecipeDetails,
+                        "Berhasil mendapatkan data :)",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
 
@@ -69,27 +77,38 @@ class RecipeDetails : AppCompatActivity() {
         val getRecipeName = detail_name.text.toString()
         val getUserID = auth?.currentUser?.uid.toString()
         val checked = "checked"
-//        val unchecked = "unchecked"
+        val unchecked = "unchecked"
 
         val dataFav = MyFavoriteModel(getRecipeName, checked)
-//        val remDataFav = MyFavoriteModel(getRecipeName, unchecked)
+        val remDataFav = MyFavoriteModel(getRecipeName, unchecked)
 
 //        val key = dbRef.child(getUserID).child("favoriteRecipe").child(getRecipeName).push().key
 
         recipe_fav.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+            if (isChecked == true) {
                 dbRef.child(getUserID).child("favoriteRecipe").child(getRecipeName)
                     .setValue(dataFav)
                     .addOnCompleteListener {
                         Toast.makeText(
                             this,
-                            "Success add recipe to favorite <3",
+                            "Berhasil menambahkan ke favorit :)",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+            } else if (isChecked == false) {
+                dbRef.child(getUserID).child("favoriteRecipe").child(getRecipeName)
+                    .setValue(remDataFav)
+                    .addOnCompleteListener {
+                        Toast.makeText(
+                            this,
+                            "Berhasil menghapus dari favorit :)",
                             Toast.LENGTH_SHORT
                         )
                             .show()
                     }
             } else {
-                Toast.makeText(this, "Fail add recipe to favorite :(", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Gagal menambahkan ke favorit :(", Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -126,7 +145,6 @@ class RecipeDetails : AppCompatActivity() {
             }
             else -> {
                 recipe_fav.isChecked = false
-                Toast.makeText(this@RecipeDetails, "Gagal memproses data!", Toast.LENGTH_SHORT).show()
             }
         }
     }

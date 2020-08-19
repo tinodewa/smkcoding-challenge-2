@@ -35,7 +35,7 @@ class SignInActivity : AppCompatActivity() {
 
         btn_sign_in.setOnClickListener {
             progressBar.visibility = View.VISIBLE
-            processSignIn(signup_email.text.toString(), signup_password.text.toString())
+            processSignIn(login_email.text.toString(), login_password.text.toString())
         }
 
         google_sign_in.setOnClickListener {
